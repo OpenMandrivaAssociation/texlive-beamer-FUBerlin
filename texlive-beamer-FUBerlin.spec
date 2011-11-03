@@ -1,3 +1,9 @@
+# revision 15878
+# category Package
+# catalog-ctan /macros/latex/contrib/beamer-FUBerlin
+# catalog-date 2009-08-11 19:19:50 +0200
+# catalog-license lppl
+# catalog-version 0.02
 Name:		texlive-beamer-FUBerlin
 Version:	0.02
 Release:	1
@@ -56,6 +62,7 @@ examples do of course differ.
 %doc %{_texmfdistdir}/doc/latex/beamer-FUBerlin/exampleTheme.tex
 %doc %{_texmfdistdir}/doc/latex/beamer-FUBerlin/geo.jpg
 %doc %{_texmfdistdir}/doc/latex/beamer-FUBerlin/silberlaube2.jpg
+%doc %{_tlpkgobjdir}/*.tlpobj
 
 #-----------------------------------------------------------------------
 %prep
@@ -66,3 +73,5 @@ examples do of course differ.
 %install
 mkdir -p %{buildroot}%{_texmfdistdir}
 cp -fpar tex doc %{buildroot}%{_texmfdistdir}
+mkdir -p %{buildroot}%{_tlpkgobjdir}
+cp -fpa tlpkg/tlpobj/*.tlpobj %{buildroot}%{_tlpkgobjdir}
