@@ -6,7 +6,7 @@
 # catalog-version 0.02
 Name:		texlive-beamer-FUBerlin
 Version:	0.02
-Release:	7
+Release:	8
 Summary:	Beamer, using the style of FU Berlin
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/beamer-FUBerlin
