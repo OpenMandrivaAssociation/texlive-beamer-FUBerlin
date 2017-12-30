@@ -1,12 +1,6 @@
-# revision 15878
-# category Package
-# catalog-ctan /macros/latex/contrib/beamer-FUBerlin
-# catalog-date 2009-08-11 19:19:50 +0200
-# catalog-license lppl
-# catalog-version 0.02
 Name:		texlive-beamer-FUBerlin
-Version:	0.02
-Release:	10
+Version:	0.02b
+Release:	1
 Summary:	Beamer, using the style of FU Berlin
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/beamer-FUBerlin
@@ -37,22 +31,8 @@ examples do of course differ.
 
 #-----------------------------------------------------------------------
 %files
-%{_texmfdistdir}/tex/latex/beamer-FUBerlin/FUbeamer.cls
-%{_texmfdistdir}/tex/latex/beamer-FUBerlin/beamercolorthemeBerlinFU.sty
-%{_texmfdistdir}/tex/latex/beamer-FUBerlin/beamerfontthemeBerlinFU.sty
-%{_texmfdistdir}/tex/latex/beamer-FUBerlin/beamerouterthemeBerlinFU.sty
-%{_texmfdistdir}/tex/latex/beamer-FUBerlin/beamerthemeBerlinFU.sty
-%doc %{_texmfdistdir}/doc/latex/beamer-FUBerlin/Changes
-%doc %{_texmfdistdir}/doc/latex/beamer-FUBerlin/FULogo.png
-%doc %{_texmfdistdir}/doc/latex/beamer-FUBerlin/FUbib.jpg
-%doc %{_texmfdistdir}/doc/latex/beamer-FUBerlin/FUlogo.pdf
-%doc %{_texmfdistdir}/doc/latex/beamer-FUBerlin/README
-%doc %{_texmfdistdir}/doc/latex/beamer-FUBerlin/exampleClass.pdf
-%doc %{_texmfdistdir}/doc/latex/beamer-FUBerlin/exampleClass.tex
-%doc %{_texmfdistdir}/doc/latex/beamer-FUBerlin/exampleTheme.pdf
-%doc %{_texmfdistdir}/doc/latex/beamer-FUBerlin/exampleTheme.tex
-%doc %{_texmfdistdir}/doc/latex/beamer-FUBerlin/geo.jpg
-%doc %{_texmfdistdir}/doc/latex/beamer-FUBerlin/silberlaube2.jpg
+%{_texmfdistdir}/tex/latex/beamer-FUBerlin
+%doc %{_texmfdistdir}/doc/latex/beamer-FUBerlin
 
 #-----------------------------------------------------------------------
 %prep
@@ -61,20 +41,6 @@ examples do of course differ.
 %build
 
 %install
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -fpar tex doc %{buildroot}%{_texmfdistdir}
-
-
-%changelog
-* Tue Jan 03 2012 Paulo Andrade <pcpa@mandriva.com.br> 0.02-2
-+ Revision: 749529
-- Rebuild to reduce used resources
-
-* Sat Nov 05 2011 Paulo Andrade <pcpa@mandriva.com.br> 0.02-1
-+ Revision: 717897
-- texlive-beamer-FUBerlin
-- texlive-beamer-FUBerlin
-- texlive-beamer-FUBerlin
-- texlive-beamer-FUBerlin
-- texlive-beamer-FUBerlin
-
+mkdir -p %{buildroot}%{_texmfdistdir}/tex/latex/beamer-FUBerlin
+cp -fpar doc/latex/beamer-FUBerlin/tex/latex/* %{buildroot}%{_texmfdistdir}/tex/latex/beamer-FUBerlin
+cp -fpar doc %{buildroot}%{_texmfdistdir}
