@@ -1,6 +1,6 @@
 Name:		texlive-beamer-FUBerlin
 Version:	0.02b
-Release:	1
+Release:	2
 Summary:	Beamer, using the style of FU Berlin
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/beamer-FUBerlin
