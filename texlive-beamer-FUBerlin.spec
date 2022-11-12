@@ -1,12 +1,12 @@
 Name:		texlive-beamer-FUBerlin
-Version:	0.02b
-Release:	2
+Version:	63161
+Release:	1
 Summary:	Beamer, using the style of FU Berlin
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/beamer-FUBerlin
 License:	LPPL
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/beamer-FUBerlin.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/beamer-FUBerlin.doc.tar.xz
+Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/beamer-fuberlin.r63161.tar.xz
+Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/beamer-fuberlin.doc.r63161.tar.xz
 BuildArch:	noarch
 BuildRequires:	texlive-tlpkg
 Requires(pre):	texlive-tlpkg
@@ -22,25 +22,24 @@ identical, so the catalogue only lists one; the sources of the
 examples do of course differ.
 
 %post
-    %{_sbindir}/texlive.post
+%{_sbindir}/texlive.post
 
 %postun
-    if [ $1 -eq 0 ]; then
+if [ $1 -eq 0 ]; then
 	%{_sbindir}/texlive.post
-    fi
+fi
 
 #-----------------------------------------------------------------------
 %files
-%{_texmfdistdir}/tex/latex/beamer-FUBerlin
-%doc %{_texmfdistdir}/doc/latex/beamer-FUBerlin
+%{_texmfdistdir}/tex/latex/beamer-fuberlin
+%doc %{_texmfdistdir}/doc/latex/beamer-fuberlin
 
 #-----------------------------------------------------------------------
 %prep
-%setup -c -a0 -a1
+%autosetup -p1 -c -a1
 
 %build
 
 %install
-mkdir -p %{buildroot}%{_texmfdistdir}/tex/latex/beamer-FUBerlin
-cp -fpar doc/latex/beamer-FUBerlin/tex/latex/* %{buildroot}%{_texmfdistdir}/tex/latex/beamer-FUBerlin
-cp -fpar doc %{buildroot}%{_texmfdistdir}
+mkdir -p %{buildroot}%{_texmfdistdir}
+cp -fpar tex doc %{buildroot}%{_texmfdistdir}
