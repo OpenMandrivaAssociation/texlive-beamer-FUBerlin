@@ -12,9 +12,7 @@ License:	lppl1.3
 Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/beamer-fuberlin.r%{tl_revision}.tar.xz
 Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/beamer-fuberlin.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
-BuildSystem:	texlive
-BuildRequires:	texlive-tlpkg
-%texlive_base_requires
+Requires(pre):	texlive-tlpkg
 Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
@@ -25,3 +23,50 @@ class itself (FUbeamer) or use the theme in the usual way with
 provided; the PDF is visually identical, so the catalogue only lists
 one; the sources of the examples do of course differ.
 
+%prep
+%setup -q -c -a1
+rm -rf tlpkg
+if [ -d RELOC ]; then
+	cp -a RELOC/. .
+	rm -rf RELOC
+fi
+
+%build
+
+%install
+mkdir -p %{buildroot}%{_datadir}/texmf-dist
+# Flat tlnet layout: tex/ doc/ source/ fonts/ ... -> texmf-dist/
+if [ -d texmf-dist ]; then
+	cp -a texmf-dist/. %{buildroot}%{_datadir}/texmf-dist/
+elif [ -d texmf ]; then
+	mkdir -p %{buildroot}%{_datadir}/texmf
+	cp -a texmf/. %{buildroot}%{_datadir}/texmf/
+else
+	for d in * .[!.]* ..?*; do
+		[ -e "$d" ] || continue
+		case "$d" in tlpkg|RELOC) continue ;; esac
+		cp -a "$d" %{buildroot}%{_datadir}/texmf-dist/
+	done
+fi
+rm -rf %{buildroot}%{_datadir}/texmf-dist/tlpkg
+
+%files
+%dir %{_datadir}/texmf-dist
+%dir %{_datadir}/texmf-dist/doc
+%dir %{_datadir}/texmf-dist/tex
+%dir %{_datadir}/texmf-dist/doc/latex
+%dir %{_datadir}/texmf-dist/tex/latex
+%dir %{_datadir}/texmf-dist/doc/latex/beamer-fuberlin
+%dir %{_datadir}/texmf-dist/tex/latex/beamer-fuberlin
+%doc %{_datadir}/texmf-dist/doc/latex/beamer-fuberlin/Changes
+%doc %{_datadir}/texmf-dist/doc/latex/beamer-fuberlin/README
+%doc %{_datadir}/texmf-dist/doc/latex/beamer-fuberlin/README.doc
+%doc %{_datadir}/texmf-dist/doc/latex/beamer-fuberlin/exampleClass.pdf
+%doc %{_datadir}/texmf-dist/doc/latex/beamer-fuberlin/exampleClass.tex
+%doc %{_datadir}/texmf-dist/doc/latex/beamer-fuberlin/exampleTheme.pdf
+%doc %{_datadir}/texmf-dist/doc/latex/beamer-fuberlin/exampleTheme.tex
+%{_datadir}/texmf-dist/tex/latex/beamer-fuberlin/FUbeamer.cls
+%{_datadir}/texmf-dist/tex/latex/beamer-fuberlin/beamercolorthemeBerlinFU.sty
+%{_datadir}/texmf-dist/tex/latex/beamer-fuberlin/beamerfontthemeBerlinFU.sty
+%{_datadir}/texmf-dist/tex/latex/beamer-fuberlin/beamerouterthemeBerlinFU.sty
+%{_datadir}/texmf-dist/tex/latex/beamer-fuberlin/beamerthemeBerlinFU.sty
